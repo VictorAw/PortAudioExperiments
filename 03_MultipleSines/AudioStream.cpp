@@ -134,7 +134,7 @@ int AudioStream::AudioCallback(void const * input_buffer, void * output_buffer,
     for (std::size_t i = 0; i < active_notes_.size; ++i) {
       Note const & note = active_notes_.notes[i];
       NotePlaybackState & playback = active_notes_.playback[i];
-      std::uint64_t elapsed_time_millis = std::chrono::duration_cast<std::chrono::milliseconds>(
+      std::int64_t elapsed_time_millis = std::chrono::duration_cast<std::chrono::milliseconds>(
           std::chrono::system_clock::now() - playback_start_).count();
 
       if (elapsed_time_millis >= note.start_millis && elapsed_time_millis < note.end_millis) {

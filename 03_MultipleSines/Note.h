@@ -9,18 +9,19 @@
 
 namespace vaw::multiple_sines {
 
+// Time is in signed integers to avoid overflow due to subtraction of durations later on
 struct Note {
-  std::uint64_t start_millis;
-  std::uint64_t end_millis;
+  std::int64_t start_millis;
+  std::int64_t end_millis;
   float frequency;
   // A map of timestamp in milliseconds to a volume level. Instantaneous volume will be
   // interpolated using the reference points
-  std::map<std::uint64_t, float> time_volume_map;
+  std::map<std::int64_t, float> time_volume_map;
 
-  Note(std::uint64_t start, float duration_seconds, std::string const & note_name);
+  Note(std::int64_t start, float duration_seconds, std::string const & note_name);
 
-  void AddVolumePoint(uint64_t time_millis, float volume);
-  float GetVolume(uint64_t elapsed_time_millis) const;
+  void AddVolumePoint(int64_t time_millis, float volume);
+  float GetVolume(int64_t elapsed_time_millis) const;
 };
 
 }  // namespace vaw::multiple_sines

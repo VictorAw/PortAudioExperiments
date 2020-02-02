@@ -19,12 +19,16 @@ void print_error(PaError error) {
 
 int main(int argc, char ** argv) {
   AudioStream stream;
+  stream.SetVolume(75);
 
   std::vector<Note> notes {
-    Note(0, 0.5, "A4"),
-    Note(0, 1.0, "C#5"),
-    Note(0, 0.75, "G5"),
+    Note(0, 1.0, "A4"),
+    Note(0, 2.0, "C#5"),
+    Note(0, 1.0, "G5"),
   };
+
+  notes[1].AddVolumePoint(0, 1.0);
+  notes[1].AddVolumePoint(2000, 0.01);
 
   PaError error;
   error = Pa_Initialize();
