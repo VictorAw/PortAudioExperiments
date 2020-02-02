@@ -7,7 +7,7 @@
 #include <thread>
 #include <vector>
 
-using vaw::sine_notes::AudioStream;
+using vaw::audio_stream::AudioStream;
 
 void print_error(PaError error) {
   std::cout << "----------------------------\n";

@@ -6,7 +6,7 @@
 #include <cmath>
 #include <iostream>
 
-namespace vaw::sine_notes {
+namespace vaw::audio_stream {
 
 float AudioStream::a440_[AudioStream::TABLE_SIZE];
 bool AudioStream::a440_generated_ = false; 
@@ -129,5 +129,5 @@ void AudioStream::FinishedCallbackEntry(void * user_data) {
   return reinterpret_cast<AudioStream *>(user_data)->FinishedCallback();
 }
 
-}  // namespace vaw::sine_notes
+}  // namespace vaw::audio_stream
 

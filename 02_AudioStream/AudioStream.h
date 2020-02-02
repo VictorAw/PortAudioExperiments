@@ -5,7 +5,7 @@
 
 #include <portaudio.h>
 
-namespace vaw::sine_notes {
+namespace vaw::audio_stream {
 
 constexpr int SAMPLE_RATE = 44000;
 
@@ -50,7 +50,7 @@ private:
   float volume_scalar_ = 1.0f;
 };
 
-}  // namespace vaw::sine_notes
+}  // namespace vaw::audio_stream
 
 #endif  // VAW_SINE_NOTES_AUDIO_STREAM_H
 
