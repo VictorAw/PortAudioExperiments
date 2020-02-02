@@ -51,6 +51,8 @@ bool CloseStreams(std::vector<AudioStream> & streams) {
 int main(int argc, char ** argv) {
   std::vector<AudioStream> streams(2);
   streams[1].SetFrequency(554.37);
+  streams[0].SetVolume(5);
+  streams[1].SetVolume(5);
 
   PaError error;
   error = Pa_Initialize();

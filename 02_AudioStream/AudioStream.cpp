@@ -81,6 +81,12 @@ bool AudioStream::SetFrequency(float frequency) {
   return true;
 }
 
+bool AudioStream::SetVolume(float percent) {
+  if (percent > 100.0f || percent < 0.0f) { return false; }
+  volume_scalar_ = percent / 100.0f;
+  return true;
+}
+
 int AudioStream::AudioCallback(void const * input_buffer, void * output_buffer,
                                unsigned long frames_per_buffer,
                                PaStreamCallbackTimeInfo  const * time_info,
@@ -95,8 +101,8 @@ int AudioStream::AudioCallback(void const * input_buffer, void * output_buffer,
   (void) user_data;
 
   for (unsigned long i = 0; i < frames_per_buffer; ++i) {
-    *(out++) = a440_[static_cast<int>(left_phase_)];
-    *(out++) = a440_[static_cast<int>(right_phase_)];
+    *(out++) = volume_scalar_ * a440_[static_cast<int>(left_phase_)];
+    *(out++) = volume_scalar_ * a440_[static_cast<int>(right_phase_)];
     left_phase_ += left_scalar_;
     if (left_phase_ >= TABLE_SIZE) { left_phase_ -= TABLE_SIZE; }
     right_phase_ += right_scalar_;

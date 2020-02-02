@@ -19,6 +19,7 @@ public:
   bool Start();
   bool Stop();
 
+  bool SetVolume(float percent);
   bool SetFrequency(float frequency);
   //bool PlayNote(Note const & note);
 
@@ -45,6 +46,8 @@ private:
   // Scalars to convert A440 to the requested note frequency
   float left_scalar_ = 1.0f;
   float right_scalar_ = 1.0f;
+
+  float volume_scalar_ = 1.0f;
 };
 
 }  // namespace vaw::sine_notes
