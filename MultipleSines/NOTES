@@ -1,0 +1,11 @@
+This project will be to figure out how to combine multiple sine waves together
+into one wave so that one AudioStream instance can play multiple notes at once.
+
+In order to accomplish this, the following will need to be done:
+  Learn how to modify amplitude to generate beat frequencies
+
+Each frequency of sine wave will need to be added together to generate the new
+since wave frequency, and then the amplitudes of each frequency will also need
+to be added and the audio stream will need to be modified in a way to produce
+the beat frequencies.
+
