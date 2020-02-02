@@ -1,0 +1,2 @@
+Opening an audio stream for each note is just not feasible if we want to have a full 8 octaves of notes.
+We will instead need to be able to combine notes together and play it through one stream.
