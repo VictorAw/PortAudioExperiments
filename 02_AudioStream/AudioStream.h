@@ -1,5 +1,5 @@
-#ifndef VAW_SINE_NOTES_AUDIO_STREAM_H
-#define VAW_SINE_NOTES_AUDIO_STREAM_H
+#ifndef VAW_AUDIO_STREAM_AUDIO_STREAM_H
+#define VAW_AUDIO_STREAM_AUDIO_STREAM_H
 
 //#include "Note.h"
 
@@ -52,5 +52,5 @@ private:
 
 }  // namespace vaw::audio_stream
 
-#endif  // VAW_SINE_NOTES_AUDIO_STREAM_H
+#endif  // VAW_AUDIO_STREAM_AUDIO_STREAM_H
 
