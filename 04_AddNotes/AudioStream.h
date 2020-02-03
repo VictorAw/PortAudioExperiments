@@ -20,7 +20,7 @@ public:
   bool Stop();
 
   bool SetVolume(float percent);
-  bool AddNotes(std::vector<Note> && notes);
+  bool AddNotes(std::vector<NoteRef> && notes);
 
 private:
   typedef int PortAudioCallback(void const * input_buffer, void * output_buffer,
@@ -44,6 +44,7 @@ private:
   float volume_ = 1.0f;
 
   double playback_start_ = 0.0;
+
 };
 
 }  // namespace vaw::add_notes
