@@ -1,0 +1,42 @@
+Because there cannot be memory allocation/deallocation done in the audio callback, we cannot
+use a dynamically sized data structure.
+
+A possible design would be to have a std::map of Notes tracking the currently playing notes.
+Because we cannot have two identical notes playing at the same time, we replace what is
+currently in the map with the note that ends later. We can then size the map to have as many
+spots as there will be possible simultaneous notes. This approach will only work when the
+notes are restricted to the keys on a piano or some other arbitrary limit, because otherwise
+we will need an infinite number of buckets. This approach encounters an issue with volume.
+Because it discards one note, it cannot keep the volume information of the other note. This
+is because it cannot insert new volume points into the time volume map of the note. There
+could be some attempt to replace the nearest previous time point with the louder of the two
+notes. It would not be a perfect combination of the two notes, but could be close enough.
+
+Another possibility is to have a data structure allocate from a Note pool. This would only
+work if the OS cannot block when using a custom allocator. If so, then we could allow a
+dynamically sized container to pull from an object pool allocated at the beginning of the
+program. The object pool could be set to a reasonably large maximum bounds.
+
+------------------------
+
+There are also two other things to consider:
+
+The program could limit the number of notes that can play at one time. It can either enforce
+it strictly, and refuse to play when there are too many notes that would play at one time
+within the piece, or enforce it loosely by dropping certain notes when the limit is reached.
+
+Another alternative that can be performed due to the fact that we do not need the notes buffer
+to be of a certain size until playback begins is to size the currently playing notes buffer
+according to an analysis of the piece when playback begins. It would be possible to analyze
+how large the buffer needs to be to play every note in the piece, including duplicate notes to
+handle volume of the note correctly and allocate the buffer to that size before playback. Also,
+because the program will definitely lock modification of the piece during playback, we can
+enforce that the notes will not change after the analysis is performed.
+
+--------------------------
+
+Most likely an analysis of the piece will be performed before playback to determine how large
+the audio stream currently playing notes buffer needs to be, with some sort of reasonable
+upper bound. If the upper bound is exceeded (most likely chosen based on the amount of memory
+that would be allocated to reach that upper bound), then the program will refuse to play.
+
